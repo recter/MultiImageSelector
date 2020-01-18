@@ -1,5 +1,7 @@
 package me.nereo.multi_image_selector;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
  * Updated by nereo on 2016/5/18.
  */
 public class MultiImageSelectorActivity extends AppCompatActivity
+//public class MultiImageSelectorActivity extends Activity
         implements MultiImageSelectorFragment.Callback{
 
     // Single choice
@@ -47,10 +50,12 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     private Button mSubmitButton;
     private int mDefaultCount = DEFAULT_IMAGE_SIZE;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.MIS_NO_ACTIONBAR);
+
         setContentView(R.layout.mis_activity_default);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -107,6 +112,8 @@ public class MultiImageSelectorActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.image_grid, Fragment.instantiate(this, MultiImageSelectorFragment.class.getName(), bundle))
                     .commit();
+
+
         }
 
     }

@@ -194,6 +194,7 @@ public class ImageGridAdapter extends BaseAdapter {
         ImageView image;
         ImageView indicator;
         View mask;
+        boolean bShowImage = false;
 
         ViewHolder(View view){
             image = (ImageView) view.findViewById(R.id.image);
@@ -219,8 +220,13 @@ public class ImageGridAdapter extends BaseAdapter {
             }else{
                 indicator.setVisibility(View.GONE);
             }
+
             File imageFile = new File(data.path);
             if (imageFile.exists()) {
+                if (true == bShowImage)
+                {
+                    return;
+                }
                 // 显示图片
                 Picasso.with(mContext)
                         .load(imageFile)
@@ -229,6 +235,7 @@ public class ImageGridAdapter extends BaseAdapter {
                         .resize(mGridWidth, mGridWidth)
                         .centerCrop()
                         .into(image);
+                bShowImage = true;
             }else{
                 image.setImageResource(R.drawable.mis_default_error);
             }
